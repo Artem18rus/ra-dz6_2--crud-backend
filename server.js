@@ -29,7 +29,7 @@ const router = new Router();
 
 router.get('/notes', async (ctx, next) => {
     ctx.response.body = notes;
-    console.log(notes)
+    // console.log(notes)
 });
 
 router.post('/notes', async(ctx, next) => {
