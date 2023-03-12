@@ -9,27 +9,13 @@ const app = new Koa();
 app.use(cors());
 app.use(koaBody({json: true}));
 
-const notes = [
-    {
-        id: 1,
-        discription: 'card1',
-    },
-    {
-        id: 2,
-        discription: 'card2',
-    },
-    {
-        id: 3,
-        discription: 'card3',
-    }
-];
-let nextId = 4;
+const notes = [];
+let nextId = 1;
 
 const router = new Router();
 
 router.get('/notes', async (ctx, next) => {
     ctx.response.body = notes;
-    // console.log(notes)
 });
 
 router.post('/notes', async(ctx, next) => {
@@ -38,6 +24,7 @@ router.post('/notes', async(ctx, next) => {
 });
 
 router.delete('/notes/:id', async(ctx, next) => {
+    console.log(ctx.params.id)
     const noteId = Number(ctx.params.id);
     const index = notes.findIndex(o => o.id === noteId);
     if (index !== -1) {
